@@ -1,10 +1,5 @@
 ﻿namespace Task_1
 {
-    interface ISum
-    {
-        int Sum(int num1, int num2);
-    }
-
     class Calculator : ISum
     {
         int Num1 { get; set; }
@@ -20,7 +15,7 @@
                 catch (FormatException)
                 {
                     Console.WriteLine("Ошибка: Вы ввели не число, либо число в неверном формате!!!\n" +
-                                      "Нажмите любую клавишу, чтобы попробовать снова...");
+                                      "Нажмите любую клавишу, чтобы попробовать снова...\n");
                     Console.ReadKey();
                 }
             }
@@ -36,19 +31,11 @@
 
             Console.WriteLine("Нажмите любую клавишу, чтобы сложить введенные числа...");
             Console.ReadKey();
-            Console.WriteLine($"Сумма чисел равна {Sum(Num1, Num2)}"); 
+            Console.WriteLine($"Сумма чисел равна {Sum(Num1, Num2)}\n"); 
         }
         public int Sum(int num1, int num2)
         {
             return num1 + num2;
-        }
-    }
-
-    class Program 
-    {
-        static void Main(string[] args) 
-        {
-            new Calculator();
         }
     }
 }
