@@ -1,11 +1,16 @@
-﻿namespace Task_1
+﻿using Task2;
+
+namespace Task1
 {
     class Calculator : ISum
     {
+        ILogger Logger { get; }
         int Num1 { get; set; }
         int Num2 { get; set; }
-        public Calculator()
+        public Calculator(ILogger logger)
         {
+            Logger = logger;
+
             while (true)
             {
                 try
@@ -14,8 +19,8 @@
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("Ошибка: Вы ввели не число, либо число в неверном формате!!!\n" +
-                                      "Нажмите любую клавишу, чтобы попробовать снова...\n");
+                    Logger.Error("\nОшибка: Вы ввели не число, либо число в неверном формате!!!");
+                    Console.WriteLine("Нажмите любую клавишу, чтобы попробовать снова...\n");
                     Console.ReadKey();
                 }
             }
@@ -29,9 +34,13 @@
             Console.Write("Введите второе целое число: ");
             Num2 = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Нажмите любую клавишу, чтобы сложить введенные числа...");
+            
+            Console.WriteLine("Нажмите любую клавишу, чтобы сложить введенные числа...\n");
             Console.ReadKey();
-            Console.WriteLine($"Сумма чисел равна {Sum(Num1, Num2)}\n"); 
+            Logger.Event("Рассчет начат!\n");
+            Thread.Sleep(1000);
+            Console.WriteLine($"Сумма чисел равна {Sum(Num1, Num2)}\n");
+            Logger.Event("Рассчет окончен!\n");
         }
         public int Sum(int num1, int num2)
         {

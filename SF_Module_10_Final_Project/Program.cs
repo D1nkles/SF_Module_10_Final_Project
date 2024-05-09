@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Task_1;
+﻿using Task1;
+using Task2;
 
 namespace SF_Module_10_Final_Project
 {
     class Program
     {
+        static ILogger Logger { get; set; }
         static void Main(string[] args)
         {
-            new Calculator();
+            Logger = new Logger();
+            new Calculator(Logger);
         }
     }
 }
